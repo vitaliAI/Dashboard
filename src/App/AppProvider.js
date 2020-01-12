@@ -18,13 +18,14 @@ export class AppProvider extends React.Component {
             addCoin: this.addCoin,
             removeCoin: this.removeCoin,
             isInFavorites: this.isInFavorites,
-            confirmFavorites: this.confirmFavorites
+            confirmFavorites: this.confirmFavorites,
+            setFilteredCoins: this.setFilteredCoins
         }
     }
 
     componentDidMount = () => {
         this.fetchCoins();
-    }
+    };
 
     addCoin = key => {
         let favorites = [...this.state.favorites];
@@ -32,20 +33,20 @@ export class AppProvider extends React.Component {
             favorites.push(key);
             this.setState({favorites});
         }
-    }
+    };
 
     removeCoin = key => {
         let favorites = [...this.state.favorites];
         this.setState({favorites: _.pull(favorites, key)})
 
-    }
+    };
 
     isInFavorites = key => _.includes(this.state.favorites, key);
 
     fetchCoins = async () => {
         let coinList = (await cc.coinList()).Data;
         this.setState({coinList});
-    }
+    };
 
     confirmFavorites = () => {
         this.setState({
@@ -55,7 +56,7 @@ export class AppProvider extends React.Component {
         localStorage.setItem('cryptoDash', JSON.stringify({
             favorites: this.state.favorites
         }));
-    }
+    };
 
     savedSettings(){
         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
@@ -67,6 +68,8 @@ export class AppProvider extends React.Component {
     }
 
     setPage = page => this.setState({page});
+
+    setFilteredCoins = (filteredCoins) => this.setState({filteredCoins});
 
     render(){
         return (
