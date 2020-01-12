@@ -1,5 +1,4 @@
 import React from 'react';
-import {CoinSymbol} from "../Settings/CoinHeaderGrid";
 
 export default function ({coin, style}) {
     return <img

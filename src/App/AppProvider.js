@@ -53,7 +53,7 @@ export class AppProvider extends React.Component {
             page: 'dashboard'
         });
         localStorage.setItem('cryptoDash', JSON.stringify({
-            test: this.state.favorites
+            favorites: this.state.favorites
         }));
     }
 
